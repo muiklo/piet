@@ -1,0 +1,109 @@
+/* General body styling */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fce4ec;
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+}
+
+/* Envelope styling */
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: #f48fb1;
+  border: 2px solid #ec407a;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: 2;
+}
+
+/* Flap styling */
+.flap {
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid #f48fb1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top;
+  transition: transform 0.5s ease;
+  z-index: 3;
+}
+
+/* Letter styling */
+.letter {
+  width: 400px; /* Make the letter wider than the envelope */
+  height: auto; /* Allow the letter to expand fully */
+  background: white;
+  position: fixed; /* Make the letter independent of the envelope */
+  top: 50%; /* Center the letter vertically */
+  left: 50%; /* Center the letter horizontally */
+  transform: translate(-50%, 100%); /* Start hidden below the screen */
+  padding: 40px; /* Increase padding for better spacing */
+  box-sizing: border-box;
+  opacity: 0; /* Start hidden */
+  transition: transform 1s ease, opacity 1s ease;
+  z-index: 10; /* Ensure the letter is above everything */
+  border-radius: 5px;
+  outline: 2px solid transparent; /* Default outline (invisible) */
+}
+
+.letter p {
+  font-size: 1.4em; /* Increase font size for better readability */
+  color: #444;
+  line-height: 1.8; /* Adjust line height for better spacing */
+}
+
+/* Button styling */
+.open-btn {
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ec407a;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, opacity 1s ease;
+}
+
+.open-btn:hover {
+  background-color: #d81b60;
+}
+
+/* When the envelope is opened */
+.open .flap {
+  transform: rotateX(-180deg); /* Flap opens */
+}
+
+.open .letter {
+  transform: translate(-50%, -50%); /* Move the letter to the center of the screen */
+  opacity: 1; /* Make the letter visible */
+  outline: 2px solid #ec407a; /* Add a visible outline */
+}
+
+/* Hide the envelope when opened */
+.open .envelope {
+  opacity: 0; /* Fade out the envelope */
+  pointer-events: none; /* Disable interaction with the envelope */
+}
+
+/* Fade-out effect for the button */
+.open-btn {
+  z-index: 10; /* Ensure the button is on top */
+  position: relative; /* Ensure it stays above other elements */
+}
+
+.open .open-btn {
+  opacity: 0; /* Fade out the button */
+  pointer-events: none; /* Disable button interaction after fading */
+}
